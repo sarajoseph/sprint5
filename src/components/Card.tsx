@@ -13,9 +13,10 @@ interface TutorialProps {
 	nextButton: boolean
 	totalSteps: number
 	currentStep: number
+	setCurrentStep: MouseEventHandler<HTMLButtonElement>
 }
 
-export const Card = ({ title, description, imageUrl, bgColor, nextStepFN, prevStepFN, prevButton, nextButton, totalSteps, currentStep }: TutorialProps) => {
+export const Card = ({ title, description, imageUrl, bgColor, nextStepFN, prevStepFN, prevButton, nextButton, totalSteps, currentStep, setCurrentStep }: TutorialProps) => {
 	return (
 		<div className="card-container max-w-xs m-auto flex flex-col font-sans">
 			<div className={`card-image-section bg-color-${bgColor} rounded-t-3xl py-24 px-5`}>
@@ -29,6 +30,7 @@ export const Card = ({ title, description, imageUrl, bgColor, nextStepFN, prevSt
 						<Indicator
 							totalSteps={totalSteps}
 							currentStep={currentStep}
+							setCurrentStep={setCurrentStep}
 						/>
 					</div>
 					<div className="buttons-container flex justify-between">

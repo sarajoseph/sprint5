@@ -1,18 +1,23 @@
+import { MouseEventHandler } from 'react';
 import styled from 'styled-components'
 
-const Bullet = styled.li<{ $selected?: boolean; }>`
-	color: ${props => props.$selected ? "#000000" : "#d1d5db"};
-	font-size: 1.125rem;
-	padding-left: 0.25rem;
-  padding-right: 0.25rem;
+const Label = styled.label<{ $selected?: boolean; }>`
+	background: ${props => props.$selected ? "#000000" : "#d1d5db"};
+	width: ${props => props.$selected ? "15px" : "5px"};
+	height: 5px;
+	border-radius: 50px;
+	cursor: pointer;
+  margin-right: 0.5rem;
+	transition: all 0.5s ease;
 `
 
 interface IndicatorProps {
 	totalSteps: number
 	currentStep: number
+	setCurrentStep: MouseEventHandler<HTMLButtonElement>
 }
 
-const Indicator = ({totalSteps, currentStep}: IndicatorProps)  => {
+const Indicator = ({totalSteps, currentStep, setCurrentStep}: IndicatorProps)  => {
 	const arrTotalSteps = []
 
 	for(let i = 0; i < totalSteps; i++) {
@@ -20,11 +25,17 @@ const Indicator = ({totalSteps, currentStep}: IndicatorProps)  => {
 	}
 
 	return(
-		<ul className="flex">
+		<>
+    <input type="radio" name="bullet" id="bullet0" className="hidden"/>
+    <input type="radio" name="bullet" id="bullet1" className="hidden"/>
+    <input type="radio" name="bullet" id="bullet2" className="hidden"/>
+		
+    <div className="flex">
 		{
-			arrTotalSteps.map((e) => e === currentStep ? <Bullet key={`bullet${e}`} $selected>&bull;</Bullet> : <Bullet key={`bullet${e}`}>&bull;</Bullet>)
+			arrTotalSteps.map((e) => e === currentStep ? <Label key={`bullet${e}`} htmlFor={`bullet${e}`} $selected></Label> : <Label key={`bullet${e}`} htmlFor={`bullet${e}`} onClick={() => setCurrentStep(e)}></Label>)
 		}
-		</ul>
+    </div>
+		</>
 	)
 }
 
