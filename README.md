@@ -19,6 +19,7 @@ Update dependencies
 Vite  
 Tailwind  
 Heroicons  
+StyledComponents  
 
 
 ## Notes

@@ -56,6 +56,8 @@ export const App = () => {
       prevStepFN={prevStep}
       prevButton={tutorialData[step].prevButton}
       nextButton={tutorialData[step].nextButton}
+      totalSteps={tutorialData.length}
+      currentStep={step}
     />
   )
 }
