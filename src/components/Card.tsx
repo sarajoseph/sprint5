@@ -1,18 +1,21 @@
-import { MouseEventHandler } from "react";
-import { NextButton, PrevButton } from "./Buttons";
+import { MouseEventHandler } from "react"
+import { NextButton, PrevButton } from "./Buttons"
+import Indicator from "./Indicator"
 
 interface TutorialProps {
-  title: string;
-  description: string;
-  imageUrl: string;
-  bgColor: string;
-  nextStepFN: MouseEventHandler<HTMLButtonElement> | undefined;
-  prevStepFN: MouseEventHandler<HTMLButtonElement> | undefined;
-	prevButton: boolean;
-	nextButton: boolean;
+  title: string
+  description: string
+  imageUrl: string
+  bgColor: string
+  nextStepFN: MouseEventHandler<HTMLButtonElement> | undefined
+  prevStepFN: MouseEventHandler<HTMLButtonElement> | undefined
+	prevButton: boolean
+	nextButton: boolean
+	totalSteps: number
+	currentStep: number
 }
 
-export const Card = ({ title, description, imageUrl, bgColor, nextStepFN, prevStepFN, prevButton, nextButton }: TutorialProps) => {
+export const Card = ({ title, description, imageUrl, bgColor, nextStepFN, prevStepFN, prevButton, nextButton, totalSteps, currentStep }: TutorialProps) => {
 	return (
 		<div className="card-container max-w-xs m-auto flex flex-col font-sans">
 			<div className={`card-image-section bg-color-${bgColor} rounded-t-3xl py-24 px-5`}>
@@ -23,7 +26,10 @@ export const Card = ({ title, description, imageUrl, bgColor, nextStepFN, prevSt
 				<p className="text-sm">{ description }</p>
 				<div className="card-buttons-section mt-8 flex justify-between items-center">
 					<div className="indicator-container">
-						Indicator
+						<Indicator
+							totalSteps={totalSteps}
+							currentStep={currentStep}
+						/>
 					</div>
 					<div className="buttons-container flex justify-between">
 						<PrevButton
