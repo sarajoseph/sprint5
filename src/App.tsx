@@ -27,7 +27,13 @@ export const App = () => {
 
   const [step, setStep] = useState(0)
 
+  const nextStep = (): void => {
+    if(step < tutorialData.length-1){
+      setStep(prev => prev + 1)
+    }
+  }
+
   return (
-    <Card title={tutorialData[step].title} description={tutorialData[step].description} />
+    <Card title={tutorialData[step].title} description={tutorialData[step].description} nextStepFN={nextStep}/>
   )
 }
