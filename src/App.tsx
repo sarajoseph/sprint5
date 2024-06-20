@@ -46,6 +46,10 @@ export const App = () => {
     }
   }
 
+  const setCurrentStep = (x: number): void => {
+    setStep(x)
+  }
+
   return (
     <Card 
       title={tutorialData[step].title} 
@@ -58,6 +62,7 @@ export const App = () => {
       nextButton={tutorialData[step].nextButton}
       totalSteps={tutorialData.length}
       currentStep={step}
+      setCurrentStep={setCurrentStep}
     />
   )
 }
