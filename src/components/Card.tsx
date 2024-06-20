@@ -1,5 +1,5 @@
 import { MouseEventHandler } from "react";
-import { ArrowRightIcon } from '@heroicons/react/24/outline'
+import { NextButton, PrevButton } from "./Buttons";
 
 interface TutorialProps {
   title: string;
@@ -7,9 +7,12 @@ interface TutorialProps {
   imageUrl: string;
   bgColor: string;
   nextStepFN: MouseEventHandler<HTMLButtonElement> | undefined;
+  prevStepFN: MouseEventHandler<HTMLButtonElement> | undefined;
+	prevButton: boolean;
+	nextButton: boolean;
 }
 
-export const Card = ({ title, description, imageUrl, bgColor, nextStepFN }: TutorialProps) => {
+export const Card = ({ title, description, imageUrl, bgColor, nextStepFN, prevStepFN, prevButton, nextButton }: TutorialProps) => {
 	return (
 		<div className="card-container max-w-xs m-auto flex flex-col font-sans">
 			<div className={`card-image-section bg-color-${bgColor} rounded-t-3xl py-24 px-5`}>
@@ -22,10 +25,15 @@ export const Card = ({ title, description, imageUrl, bgColor, nextStepFN }: Tuto
 					<div className="indicator-container">
 						Indicator
 					</div>
-					<div className="buttons-container">
-						<button onClick={nextStepFN} className="bg-black p-3 rounded-full">
-							<ArrowRightIcon className="size-6 text-white" />
-						</button>
+					<div className="buttons-container flex justify-between">
+						<PrevButton
+							showButton={prevButton}
+							buttonMethod={prevStepFN}
+						/>
+						<NextButton
+							showButton={nextButton}
+							buttonMethod={nextStepFN}
+						/>
 					</div>
 				</div>
 			</div>
