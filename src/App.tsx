@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './css/tailwind-output.css'
-import './css/app.css'
+import './css/main.css'
 import { Card } from './components/Card'
 
 
